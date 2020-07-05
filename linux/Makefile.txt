@@ -1,0 +1,37 @@
+﻿calc:hello.cpp Bird.h Animation.h
+	g++ -o calc hello.cpp Bird.h Animation.h -std=c++11
+
+cc = g++
+prom = calc
+deps = $(shell find ./ -name "*.h")
+src = $(shell find ./ -name "*.cpp")
+obj = $(src:%.c=%.o)
+
+$(prom):$(obj)
+	$(cc) -o $(prom) $(obj)
+
+%.o:%.cpp $(deps)
+	$(cc) -c $< -o $@
+
+clean:
+	rm -rf $(obj) $(prom)
+
+
+
+
+
+caller:hello.cpp Bird.h Animation.h
+        g++ -o caller hello.cpp Bird.h Animation.h -std=c++11
+
+cc = g++
+prom = caller
+deps = $(shell find ./ -name "*.h")
+src = $(shell find ./ -name "*.cpp")
+obj = $(src:%.c=%.o)
+
+$(prom):$(obj)
+        $(cc) -o $(prom) $(obj)
+%.o:%.cpp $(deps)
+        $(cc) -c $< -o $@
+clean:
+        rm -rf $(obj) $(prom)
